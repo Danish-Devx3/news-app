@@ -5,36 +5,48 @@ import './App.css'
 
 const App = () => {
     const [resdata, setresData] = useState([])
+    const [loading, setLoading] = useState(true)
 
     async function fetchData(){
-        const response = await fetch('https://newsapi.org/v2/top-headlines?' +
-          'country=us&' +
-          'apiKey=0a219c400ed8404daa54ca4ce401583c')
-        const data = await response.json()
-        setresData(data.articles)
+        try {
+            setLoading(true)
+            const response = await fetch('https://newsapi.org/v2/top-headlines?' +
+              'country=us&' +
+              'apiKey=0a219c400ed8404daa54ca4ce401583c')
+            const data = await response.json()
+            setresData(data.articles)
+        } catch (error) {
+            console.error('Error fetching news:', error)
+        } finally {
+            setLoading(false)
+        }
     }
+
     useEffect(() => {
         fetchData();
     }, [])
-
-    console.log(resdata)
     
-  return (
-    <>
-    <div className="body">
-        {resdata.map((article)=>{
-            return <ActionAreaCard title={article.title} image={article.urlToImage} />
-        })}
-    </div>
-    </>
-  )
+    return (
+        <>
+            <header className="header">
+                <h1>Latest News</h1>
+            </header>
+            <div className="body">
+                {loading ? (
+                    <p>Loading news...</p>
+                ) : (
+                    resdata.map((article, index) => (
+                        <ActionAreaCard 
+                            key={index}
+                            title={article.title} 
+                            content={article.content} 
+                            image={article.urlToImage}
+                        />
+                    ))
+                )}
+            </div>
+        </>
+    )
 }
-
-
-
- function ButtonUsage() {
-  return <Button variant="contained">Hello world</Button>;
-}
-
 
 export default App
