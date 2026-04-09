@@ -1,0 +1,147 @@
+/* ===== News Card ===== */
+.news-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--bg-glass-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: all var(--transition-normal);
+    animation: fadeInUp var(--transition-slow) ease both;
+}
+
+.news-card:hover {
+    transform: translateY(-6px);
+    background: var(--bg-card-hover);
+    border-color: rgba(108, 92, 231, 0.3);
+    box-shadow: var(--shadow-lg), 0 0 40px rgba(108, 92, 231, 0.1);
+}
+
+/* Shine effect on hover */
+.news-card-shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg,
+            transparent 40%,
+            rgba(255, 255, 255, 0.03) 45%,
+            rgba(255, 255, 255, 0.06) 50%,
+            rgba(255, 255, 255, 0.03) 55%,
+            transparent 60%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.news-card:hover .news-card-shine {
+    transform: translateX(100%);
+}
+
+/* Image */
+.news-card-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.news-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.news-card:hover .news-card-image {
+    transform: scale(1.08);
+}
+
+.news-card-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(10, 10, 15, 0.6) 0%,
+            transparent 50%);
+    pointer-events: none;
+}
+
+/* Source Badge */
+.news-card-source {
+    position: absolute;
+    top: var(--space-md);
+    left: var(--space-md);
+    padding: var(--space-xs) var(--space-sm);
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--radius-sm);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--accent-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Card Body */
+.news-card-body {
+    padding: var(--space-lg);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    letter-spacing: -0.2px;
+    transition: color var(--transition-normal);
+}
+
+.news-card:hover .news-card-title {
+    color: var(--accent-secondary);
+}
+
+.news-card-description {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: var(--space-md);
+    flex: 1;
+}
+
+/* Footer */
+.news-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--bg-glass-border);
+}
+
+.news-card-time {
+    font-size: 0.78rem;
+    color: var(--accent-secondary);
+    font-weight: 500;
+}
+
+.news-card-date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
