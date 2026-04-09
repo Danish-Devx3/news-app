@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import NewsCard from './Components/Card';
-import './App.css';
 
 const API_KEY = import.meta.env.VITE_API_KEY || '0a219c400ed8404daa54ca4ce401583c';
 const BASE_URL = 'https://newsapi.org/v2/top-headlines';
